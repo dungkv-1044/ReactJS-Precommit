@@ -1,0 +1,31 @@
+env:
+  browser: true
+  es2021: true
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project:
+    - "./tsconfig.json"
+  sourceType: "module"
+  ecmaVersion: 12
+  ecmaFeatures:
+    jsx: true
+root: true
+plugins:
+  - "@typescript-eslint"
+  - "react-hooks"
+settings:
+  react:
+    version: detect
+rules:
+  "react/prop-types": "off"
+  "@typescript-eslint/explicit-module-boundary-types": "off"
+  "@typescript-eslint/no-unused-vars":
+    - "error"
+    - argsIgnorePattern: "^_"
+  "@typescript-eslint/no-non-null-assertion": "off"
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  - prettier
