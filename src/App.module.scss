@@ -1,0 +1,12 @@
+@import "./styles/variables.scss";
+
+[id="root"] {
+  height: 100%;
+}
+
+.mainContent {
+  padding: 48px 24px 40px;
+  min-height: 100vh;
+  min-height: var(--window-height);
+  background: $pageBg;
+}

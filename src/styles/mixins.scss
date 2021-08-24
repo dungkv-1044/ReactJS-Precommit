@@ -1,0 +1,90 @@
+$breakpointsDown: (
+  "sm": (
+    max-width: $sm,
+  ),
+  "md": (
+    max-width: $md,
+  ),
+  "lg": (
+    max-width: $lg,
+  ),
+  "xl": (
+    max-width: $xl,
+  ),
+);
+
+$breakpointsUp: (
+  "sm": (
+    min-width: $sm + 1px,
+  ),
+  "md": (
+    min-width: $md + 1px,
+  ),
+  "lg": (
+    min-width: $lg + 1px,
+  ),
+  "xl": (
+    min-width: $xl + 1px,
+  ),
+);
+
+@mixin breakpoint-down($breakpoint) {
+  $raw-query: map-get($breakpointsDown, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+@mixin breakpoint-up($breakpoint) {
+  $raw-query: map-get($breakpointsUp, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == "string",
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. ' + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+@mixin truncate-oneline() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin truncate-multiline($line-number) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-number;
+  -webkit-box-orient: vertical;
+}
+
+
+@mixin disable-select() {
+  -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
